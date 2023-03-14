@@ -13,6 +13,12 @@ export interface IUser {
   password?: string
 }
 
+export interface IOrder {
+  id: number,
+  userId: number,
+  productsIds: number[]
+}
+
 export interface IPayload {
   data: IUser,
 }
