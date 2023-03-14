@@ -19,6 +19,11 @@ export interface IOrder {
   productsIds: number[]
 }
 
+export interface ILogin {
+  username: string,
+  password: string
+}
+
 export interface IPayload {
   data: IUser,
 }

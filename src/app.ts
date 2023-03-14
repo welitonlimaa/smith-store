@@ -1,4 +1,7 @@
 import express from 'express';
+
+import loginRouter from './routers/loginRounter';
+
 import orderRouter from './routers/orderRouter';
 
 import productRouter from './routers/productRoute';
@@ -14,5 +17,7 @@ app.use('/products', productRouter);
 app.use('/users', userRouter);
 
 app.use('/orders', orderRouter);
+
+app.use('/login', loginRouter);
 
 export default app;

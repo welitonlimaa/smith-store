@@ -1,5 +1,5 @@
 import { RowDataPacket, OkPacket } from 'mysql2';
-import { IUser } from '../interfaces';
+import { IUser, ILogin } from '../interfaces';
 import connection from './connection';
 
 const createUser = async (dataUser: IUser) => {
@@ -16,6 +16,19 @@ const createUser = async (dataUser: IUser) => {
   };
 };
 
+const login = async (dataLogin: ILogin): Promise<IUser[]> => {
+  const { username } = dataLogin;
+
+  const [rows] = await connection.execute<IUser[] & RowDataPacket[]>(
+    `
+    SELECT * FROM Trybesmith.users WHERE username = ?;
+  `,
+    [username],
+  );
+  return rows;
+};
+
 export default {
   createUser,
+  login,
 };
