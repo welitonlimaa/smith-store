@@ -15,6 +15,14 @@ const createProduct = async (dataProduct: IProduct) => {
   };
 };
 
+const getProducts = async (): Promise<IProduct[]> => {
+  const [rows] = await connection.execute<IProduct[] & RowDataPacket[]>(`
+    SELECT * FROM Trybesmith.products;
+  `);
+  return rows;
+};
+
 export default { 
   createProduct,
+  getProducts,
 };
