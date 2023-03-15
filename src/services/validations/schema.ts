@@ -18,5 +18,5 @@ export const dataUserSchema = Joi.object({
 });
 
 export const dataOrderSchema = Joi.object({
-  productsIds: Joi.array().items(Joi.number()).min(1).required(),
+  productsIds: Joi.array().items(Joi.number()).min(1),
 });

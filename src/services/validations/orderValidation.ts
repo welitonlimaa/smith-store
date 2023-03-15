@@ -6,9 +6,6 @@ const validateOrder = (data: IOrder) => {
 
   if (error) {
     const { message } = error;
-    if (message.includes('required')) {
-      return { type: 400, message: error.message };
-    }
     if (message.includes('number') || message.includes('items')) {
       return { type: 422, message: '"productsIds" must include only numbers' };
     }
