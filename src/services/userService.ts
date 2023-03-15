@@ -1,13 +1,23 @@
 import { createToken } from '../auth/authenticator';
+
 import { IUser, ILogin } from '../interfaces';
 
 import userModel from '../models/userModel';
 
 import validateLogin from './validations/loginValidation';
 
+import validateUser from './validations/userValidation';
+
 const createUser = async (dataUser: IUser) => {
+  const error = validateUser(dataUser);
+  if (error.type) return error;
+
   const user = await userModel.createUser(dataUser);
-  return user;
+
+  delete user.password;
+  const token = createToken(user);
+
+  return { type: null, message: token };
 };
 
 const login = async (dataLogin: ILogin) => {

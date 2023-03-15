@@ -1,19 +1,14 @@
 import { Request, Response } from 'express';
 
-import { createToken } from '../auth/authenticator';
-
 import userService from '../services/userService';
 
 const createUser = async (req: Request, res: Response) => {
   const dataUser = req.body;
 
-  const user = await userService.createUser(dataUser);
+  const { type, message } = await userService.createUser(dataUser);
+  if (type) return res.status(type).json({ message });
 
-  delete user.password;
-
-  const token = createToken(user);
-
-  return res.status(201).json({ token });
+  return res.status(201).json({ token: message });
 };
 
 const login = async (req: Request, res: Response) => {
