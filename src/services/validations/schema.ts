@@ -1,8 +1,11 @@
 import Joi from 'joi';
 
-const dataLoginSchema = Joi.object({
+export const dataLoginSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
 });
 
-export default dataLoginSchema;
+export const dataProductSchema = Joi.object({
+  name: Joi.string().min(3).required(),
+  amount: Joi.string().min(3).required(),
+});

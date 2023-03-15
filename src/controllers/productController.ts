@@ -5,8 +5,10 @@ import productService from '../services/productService';
 const createProduct = async (req: Request, res: Response) => {
   const dataProduct = req.body;
 
-  const product = await productService.createProduct(dataProduct);
-  return res.status(201).json(product);
+  const { type, message } = await productService.createProduct(dataProduct);
+  if (type) return res.status(type).json({ message });
+  
+  return res.status(201).json(message);
 };
 
 const getProducts = async (_req: Request, res: Response) => {

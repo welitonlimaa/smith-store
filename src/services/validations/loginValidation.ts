@@ -1,5 +1,5 @@
 import { ILogin } from '../../interfaces';
-import dataLoginSchema from './schema';
+import { dataLoginSchema } from './schema';
 
 const validateLogin = (data: ILogin) => {
   const { error } = dataLoginSchema.validate(data);
