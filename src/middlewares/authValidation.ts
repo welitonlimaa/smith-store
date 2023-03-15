@@ -1,10 +1,8 @@
-import { Response, NextFunction } from 'express';
-
-import { IReq } from '../interfaces';
+import { Request, Response, NextFunction } from 'express';
 
 import { verifyToken } from '../auth/authenticator';
 
-const validateToken = (req: IReq, res: Response, next: NextFunction) => {
+const authValidation = (req: Request, res: Response, next: NextFunction) => {
   try {
     const { authorization } = req.headers;
     if (!authorization) {
@@ -12,7 +10,7 @@ const validateToken = (req: IReq, res: Response, next: NextFunction) => {
     }
     const payload = verifyToken(authorization);
     
-    req.data = payload.data;
+    req.body.data = payload.data;
   
     next();
   } catch (error) {
@@ -20,4 +18,4 @@ const validateToken = (req: IReq, res: Response, next: NextFunction) => {
   }
 };
 
-export default validateToken;
+export default authValidation;

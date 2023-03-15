@@ -1,5 +1,3 @@
-import { Request } from 'express';
-
 export interface IProduct {
   id?: number,
   name: string,
@@ -25,10 +23,17 @@ export interface ILogin {
   password: string
 }
 
+type User = {
+  id: number,
+  username: string,
+  vocation: string,
+  level: number,
+};
+
 export interface IPayload {
-  data: IUser,
+  data: User,
 }
 
-export interface IReq extends Request {
-  data: object,
+export interface IReq {
+  data: User,
 }

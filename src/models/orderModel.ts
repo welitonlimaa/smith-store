@@ -1,4 +1,4 @@
-import { RowDataPacket } from 'mysql2';
+import { RowDataPacket, OkPacket } from 'mysql2';
 import { IOrder } from '../interfaces';
 import connection from './connection';
 
@@ -12,6 +12,15 @@ const getOrders = async (): Promise<IOrder[]> => {
   return rows;
 };
 
+const createOrder = async (userId: number) => {
+  const [{ insertId }] = await connection.execute<OkPacket & RowDataPacket[]>(`
+   INSERT INTO Trybesmith.orders (user_id) VALUES (?);
+   `, [userId]);
+
+  return insertId;
+};
+
 export default {
   getOrders,
+  createOrder,
 };

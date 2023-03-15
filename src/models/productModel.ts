@@ -22,7 +22,15 @@ const getProducts = async (): Promise<IProduct[]> => {
   return rows;
 };
 
+const updateProductOrder = async (orderId: number, productId: number) => {
+  const [rows] = await connection.execute<IProduct[] & RowDataPacket[]>(`
+    UPDATE Trybesmith.products SET order_id = ? WHERE id = ?
+  `, [orderId, productId]);
+  return rows;
+};
+
 export default { 
   createProduct,
   getProducts,
+  updateProductOrder,
 };

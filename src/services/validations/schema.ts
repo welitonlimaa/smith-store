@@ -16,3 +16,7 @@ export const dataUserSchema = Joi.object({
   level: Joi.number().min(1).required(),
   password: Joi.string().min(8).required(),
 });
+
+export const dataOrderSchema = Joi.object({
+  productsIds: Joi.array().items(Joi.number()).min(1).required(),
+});
