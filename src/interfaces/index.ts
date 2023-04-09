@@ -33,7 +33,3 @@ type User = {
 export interface IPayload {
   data: User,
 }
-
-export interface IReq {
-  data: User,
-}

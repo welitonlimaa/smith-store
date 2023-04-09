@@ -13,6 +13,7 @@ const createUser = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   const dataLogin = req.body;
+  
   const { type, message } = await userService.login(dataLogin);
   if (type) return res.status(type).json({ message });
 

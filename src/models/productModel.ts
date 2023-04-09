@@ -16,10 +16,10 @@ const createProduct = async (dataProduct: IProduct) => {
 };
 
 const getProducts = async (): Promise<IProduct[]> => {
-  const [rows] = await connection.execute<IProduct[] & RowDataPacket[]>(`
+  const [result] = await connection.execute<IProduct[] & RowDataPacket[]>(`
     SELECT * FROM Trybesmith.products;
   `);
-  return rows;
+  return result;
 };
 
 const updateProductOrder = async (orderId: number, productId: number) => {
